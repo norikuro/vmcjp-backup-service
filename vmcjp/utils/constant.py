@@ -3,7 +3,7 @@
 import sys
 
 class _const:
-  #S3_CONFIG = "vmcjp/s3config.json"
+#  S3_CONFIG = "vmcjp/s3config.json"
   S3_CONFIG = "vmcjp/test_s3config.json" #for test
   SDDC_DB = "sddc_db"
   SDDC_COLLECTION = "sddc_collection"
@@ -11,9 +11,6 @@ class _const:
   USER_COLLECTION = "user_collection"
   CRED_DB = "cred_db"
   CRED_COLLECTION = "cred_collection"
-  SDDC = "sddc"
-  USER = "user"
-  CRED = "cred"
   BUTTON_DIR = "vmcjp/button/"
   HELP = "May I help you? please type `help`."
   

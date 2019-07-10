@@ -1,38 +1,44 @@
-import os
 import datetime
 
 from time import sleep
+from vmcjp.utils import dbutils2
 from com.vmware.vmc.model_client import Task
 from vmcjp.utils.cloudwatch import put_event
 
-TEST_ORG_ID = os.environ["test_org"] #for test
 
 def task_handler(task_client, event):
-#  resp = wait_for_task(task_client, event["org_id"], event["task_id"])
-#  resp = wait_for_task(task_client, TEST_ORG_ID, event["task_id"]) #for test
-  resp = {"status": True, "time": 60} #for test
+  resp = wait_for_task(task_client, event.get("org_id"), event.get("task_id"))
+#  resp = {"status": True, "check_time": 3, "estimated_time": 3}
+
+  db = dbutils2.DocmentDb(event.get("db_url"))
   
-  if resp["status"] == False:
-    return "{} to create sddc, {}".format(resp["message"], event["sddc_name"])
-  elif resp["status"] == True and resp.has_key("time"):
+  if resp.get("status") == False:
+    db.delete_event_db(event.get("user_id"))
+    return "{} to {} sddc, {}".format(
+      resp.get("message"), 
+      event.get("command"), 
+      event.get("sddc_name")
+    )
+  elif resp.get("status") == True and resp.has_key("check_time"):
     event["event_name"] = "{}-{}-{}".format(
-      event["user_id"],
-      event["task_id"],
+      event.get("user_id"),
+      event.get("task_id"),
       datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     )
-#    put_event(resp["time"], event) #for test
-    put_event(15, event) #for test
-    return "It takes around {} min".format(resp["time"])
-  elif resp["status"] == True:
-    return "{} successfully to create sddc, task id: {}".format(
-      resp["message"], 
-      event["task_id"]
+    put_event(resp.get("check_time"), event)
+    return "It takes around {} min".format(resp.get("estimated_time"))
+  elif resp.get("status") == True:
+    db.delete_event_db(event.get("user_id"))
+    return "{} successfully to {} sddc, task id: {}".format(
+      resp.get("message"), 
+      event.get("command"),
+      event.get("task_id")
     )
 
 def wait_for_task(task_client, org_id, task_id):
   interval_sec = 60
   
-  sleep(interval_sec)
+  sleep(30)
   while True:
     task = task_client.get(org_id, task_id)
     
@@ -49,12 +55,12 @@ def wait_for_task(task_client, org_id, task_id):
           time = 7
         elif est_time <= 10 and est_time > 30:
           time = 20
-        elif est_time <= 30 and est_time > 60:
-          time = 45
-        elif est_time <= 60 and est_time > 120:
-          time = 90
         else:
-          time = 150
-        return {"status": True, "time": time}
+          time = 30
+        return {
+            "status": True, 
+            "estimated_time": est_time,
+            "check_time": time
+        }
       else:
         sleep(interval_sec)
