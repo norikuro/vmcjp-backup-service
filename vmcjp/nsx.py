@@ -117,7 +117,7 @@ class NetworkConfig(Config):
                 "display_name": segment.get_field("display_name"),
                 "domain_name": segment.get_field("domain_name"),
                 "l2_extension": segment.get_field("l2_extension"),
-                "subnet": segment.get_field("subnets")[0].to_dict(),
+#                "subnet": segment.get_field("subnets")[0].to_dict(),
                 "type": segment.get_field("type")
             }
             for segment in segments 
