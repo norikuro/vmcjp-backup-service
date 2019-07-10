@@ -115,7 +115,6 @@ class NetworkConfig(Config):
             for segment in segments 
             if segment.get_field("create_user") != "admin"
         ]
-        print({"segments": network_config})
         self.db.upsert(
             {"network_updated": {"$exists":True}},
             {"$set": 
