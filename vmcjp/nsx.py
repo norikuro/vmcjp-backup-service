@@ -100,18 +100,23 @@ class NetworkConfig(Config):
         start = time.time()
         segments = self.nsx_policy_client.infra.tier_1s.Segments.list("cgw").results
         test = [
-            segment.get_field("create_user") 
+            {
+                "create_user": segment.get_field("create_user"),
+                "display_name": segment.get_field("display_name")
+            }
             for segment in segments 
             if segment.get_field("create_user") != "admin"
         ]
         print(test)
         network_config = [
-            {"create_user": segment.get_field("create_user"),
-             "display_name": segment.get_field("display_name"),
-             "domain_name": segment.get_field("domain_name"),
-             "l2_extension": segment.get_field("l2_extension"),
-             "subnet": segment.get_field("subnets")[0].to_dict(),
-             "type": segment.get_field("type")}
+            {
+                "create_user": segment.get_field("create_user"),
+                "display_name": segment.get_field("display_name"),
+                "domain_name": segment.get_field("domain_name"),
+                "l2_extension": segment.get_field("l2_extension"),
+                "subnet": segment.get_field("subnets")[0].to_dict(),
+                "type": segment.get_field("type")
+            }
             for segment in segments 
             if segment.get_field("create_user") != "admin"
         ]
