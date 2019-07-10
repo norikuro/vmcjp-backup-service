@@ -105,7 +105,9 @@ class NetworkConfig(Config):
                 "display_name": segment.get_field("display_name"),
                 "domain_name": segment.get_field("domain_name"),
                 "l2_extension": segment.get_field("l2_extension"),
-                "subnet": None if segment.get_field("subnets") is None else segment.get_field("subnets")[0].to_dict()
+                "subnet": None 
+                if segment.get_field("subnets") is None 
+                else segment.get_field("subnets")[0].to_dict()
             }
             for segment in segments 
             if segment.get_field("create_user") != "admin"
