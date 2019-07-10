@@ -107,7 +107,7 @@ class NetworkConfig(Config):
                 "l2_extension": segment.get_field("l2_extension"),
                 "subnet": None 
                 if segment.get_field("subnets") is None 
-                else segment.get_field("subnets")[0].to_dict()
+                else segment.get_field("subnets")[0].to_dict(),
                 "type": segment.get_field("type")
             }
             for segment in segments 
