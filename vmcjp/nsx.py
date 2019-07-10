@@ -113,12 +113,13 @@ class NetworkConfig(Config):
             for segment in segments 
             if segment.get_field("create_user") != "admin"
         ]
-        self.db.upsert(
-            {"network_updated": {"$exists":True}},
-            {"$set": 
-              {"segments": network_config}
-            }
-        )
+        print({"segments": network_config})
+#        self.db.upsert(
+#            {"network_updated": {"$exists":True}},
+#            {"$set": 
+#              {"segments": network_config}
+#            }
+#        )
         elapsed_time = time.time() - start
         print ("elapsed_time:{0}".format(elapsed_time) + "[sec]")
 
