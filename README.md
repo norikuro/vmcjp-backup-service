@@ -1,4 +1,4 @@
-# vmc-demo
+# vmcjp-backup-service
 
 ## Abstract
 SDDC.py will back up VMware Cloud on AWS configurations like following information to AWS DocumentDB and S3.
