@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import pymongo
+import json
 
 from vmcjp.utils import dbutils
 
@@ -25,9 +26,11 @@ class Test(object):
 #    )
 #    col = db.find_one({"sddc.name": {"$exists": True}})
 #    print(col)
-    col = collection.find()
-    for data in col:
-      print(data)
+#    col = collection.find()
+    col = db.find_with_fields({}, {"_id": 0})
+    print(json.dumps(col, indent=4))
+#    for data in col:
+#      print(json.dumps(data, indent=4))
   
 def main():
   test = Test()
