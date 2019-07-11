@@ -2,15 +2,13 @@ import json
 import pymongo
 
 from vmcjp.utils.s3utils import read_json_from_s3
+from vmcjp.utils import constant
 
 class DocmentDb(object):
-  def __init__(self, s3config, db_name, collection_name):
-    f = json.load(open(s3config, 'r'))
-    url = read_json_from_s3(f["bucket"], f["config"])["db_url"]
-
+  def __init__(self, url):
     self.client = pymongo.MongoClient(url)
-    self.db = self.client[db_name]
-    self.collection = self.db[collection_name]
+    self.db = self.client[constant.SDDC_DB]
+    self.collection = self.db[constant.SDDC_COLLECTION]
     
   def get_client(self):
     return self.client
