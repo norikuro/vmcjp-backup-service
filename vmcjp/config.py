@@ -2,7 +2,7 @@
 
 import json
 
-from vmcjp.utils import dbutils
+from vmcjp.utils import sddc_db
 from vmcjp.utils import constant
 from vmcjp.utils.s3utils import read_json_from_s3
 
