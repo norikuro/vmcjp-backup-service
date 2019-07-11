@@ -13,4 +13,4 @@ class Config(object):
       self.token = j["token"]
       self.org_id = j["org_id"]
       self.sddc_id = j["sddc_id"]
-      self.db = dbutils.DocmentDb(j["db_url"])
+      self.db = sddc_db.DocmentDb(j["db_url"])
