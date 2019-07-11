@@ -3,7 +3,7 @@ import json
 
 from vmcjp.utils import sddc_db
 from vmcjp.utils import constant
-from vmcjp.utils.s3utils import read_json_from_s3
+from vmcjp.utils.s3utils import read_json_from_s3, write_json_to_s3
 
 class ExportDBtoS3(object):
   def __init__(self):
