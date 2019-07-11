@@ -5,7 +5,7 @@ from vmcjp.utils import sddc_db
 from vmcjp.utils import constant
 from vmcjp.utils.s3utils import read_json_from_s3
 
-class ExportDBtoS3(Object):
+class ExportDBtoS3(object):
   def __init__(self):
     f = json.load(open(constant.S3_CONFIG, "r"))
     j = read_json_from_s3(f["bucket"], f["config"])
