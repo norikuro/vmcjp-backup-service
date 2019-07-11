@@ -9,7 +9,7 @@ class ExportDBtoS3(object):
   def __init__(self):
     f = json.load(open(constant.S3_CONFIG, "r"))
     j = read_json_from_s3(f["bucket"], f["config"])
-    self.buket = f["bucket"]
+    self.bucket = f["bucket"]
     self.db = sddc_db.DocmentDb(j["db_url"])    
   
   def export(self):
