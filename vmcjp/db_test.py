@@ -3,12 +3,17 @@
 import pymongo
 import json
 
-from vmcjp.utils import dbutils
+from vmcjp.utils import constant
+from vmcjp.utils import sddc_db
+from vmcjp.utils.s3utils import read_json_from_s3
 
 class Test(object):
   def db(self):
-    db = dbutils.DocmentDb("vmcjp/s3config.json", "sddc_db", "sddc_collection")
-    collection = db.get_collection()
+    f = json.load(open(constant.S3_CONFIG, 'r'))
+    j = read_json_from_s3(f["bucket"], f["config"])
+    url = j.get("db_url")
+    db = sddc_db.DocmentDb(url)
+#    collection = db.get_collection()
 #    col = collection.aggregate([{"$project": {"sddc.name": 1}}])
 #    collection.remove()
 #    col = db.find_with_fields(
