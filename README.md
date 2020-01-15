@@ -29,9 +29,13 @@ followings are helper scripts
 
 ## How to get backup of VMC SDDC configurations.
 ### Configure AWS Endpoint and deploy EC2 instance
-First you need to configure AWS Endpoint to be able to access S3 from EC2.
-Deploy EC2 instance.
-Configure awscli on EC2 instance with following command.
+You need to deploy 2 EC2 instance.
+* one is to run this python script.
+* another is for database(Mongo DB).
+
+Deploy 1st EC2 instance.
+And you need to configure AWS Endpoint to be able to access S3 from this EC2.
+And configure awscli on EC2 instance with following command.
 execute "aws s3 ls" command and check if the command was list your S3 buckes successfully.
 ```cmd
 # aws configure
@@ -42,6 +46,9 @@ Default output format [None]: (Enter)
 
 # aws s3 ls
 ```
+
+Deploy 2nd EC2 instance and install and configure MongoDB.
+In this sample we are expecting to access MongoDB with SSL.
 
 ### Clone vmc-demo to local
 
@@ -86,8 +93,9 @@ vmc-env is bucket name, specified in s3config.json
 
 ### Run scripts
 * run sddc.py or network.py
-** After run these scripts successfully, scrips will create/update sddc.json or network.json on S3's same bucket.
-** You can see backed up VMC's configuration data in sddc.json or network.json
+** After run these scripts successfully, scrips will store VMC configuration adta to MongoDB.
+** You can export data from MongoDB to S3 by running export_db_to_s3.py.
+** You can see exported VMC configuration data in sddc.json or nsx.json
 ```cmd
 $ python sddc.py
 ```
