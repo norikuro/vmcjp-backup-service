@@ -92,10 +92,10 @@ vmc-env is bucket name, specified in s3config.json
 ```
 
 ### Run scripts
-* run sddc.py or network.py
-* After run these scripts successfully, scrips will store VMC configuration adta to MongoDB.
-* You can export data from MongoDB to S3 by running export_db_to_s3.py.
-* You can see exported VMC configuration data in sddc.json or nsx.json
+run sddc.py or network.py
+After run these scripts successfully, scrips will store VMC configuration adta to MongoDB.
+You can export data from MongoDB to S3 by running export_db_to_s3.py.
+You can see exported VMC configuration data in sddc.json or nsx.json
 ```cmd
 $ python sddc.py
 ```
