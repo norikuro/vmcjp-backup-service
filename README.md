@@ -1,14 +1,14 @@
 # vmcjp-backup-service
 
 ## Abstract
-SDDC.py will back up VMware Cloud on AWS configurations like following information to AWS DocumentDB and S3.
+sddc.py will back up VMware Cloud on AWS configurations like following information to AWS MongoDB and S3.
 * VMware Cloud on AWS SDDC's id and name.
 * Number of hosts
 * Management CIDR block
 * SDDC version
 * Resource Pools, Folders, Content Libraries
 
-network.py will back up VMware Cloud on AWS's network configurations like following information to AWS DocumentDB and S3.
+nsx.py will back up VMware Cloud on AWS's network configurations like following information to AWS MongoDB and S3.
 * Connected customer AWS VPC
 * Security Groups (user created groups)
 * Firewall Rules (user created fws)
@@ -20,14 +20,14 @@ You can run this script on AWS EC2 or AWS Lambda.
 ## Scrips
 followings are main scripts
 * vmcjptool/sddc.py
-* vmcjptool/networks.py
+* vmcjptool/nsx.py
 
 followings are helper scripts
 * vmcjptool/*.py
 * vmcjptool/network/*.py
 * vmcjptool/utils/*.py
 
-## How to...
+## How to get backup of VMC SDDC configurations.
 ### Configure AWS Endpoint and deploy EC2 instance
 First you need to configure AWS Endpoint to be able to access S3 from EC2.
 Deploy EC2 instance.
@@ -46,7 +46,7 @@ Default output format [None]: (Enter)
 ### Clone vmc-demo to local
 
 ```cmd
-# git clone https://github.com/norikuro/vmc-demo.git
+# git clone https://github.com/norikuro/vmcjp-backup-service.git
 ```
 
 ### Set PYTHONPATH to be able to import librarys  
