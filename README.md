@@ -80,7 +80,7 @@ vmc-env is bucket name, specified in s3config.json
   "org_id": "VMC's Organization ID",
   "sddc_id": "SDDC ID",
   "token": "Refresh token number",
-  "db_url": "mongodb://<user name for DocumentDB>:<password for DocumentDB>@docdb-xxxxxxxxxx.cluster-xxxxxx.ap-northeast-1.docdb.amazonaws.com:27017/",
+  "db_url": "mongodb://<user name of a configured MongoDB>:<password of a configured MongoDB>@docdb-xxxxxxxxxx.cluster-xxxxxx.ap-northeast-1.docdb.amazonaws.com:27017/?ssl=true&ssl_cert_reqs=CERT_NONE",
 }
 ```
 
