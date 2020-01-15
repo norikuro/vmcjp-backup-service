@@ -119,11 +119,11 @@ class SddcConfig(Config):
     def list_user_folders(self):
         management_folders = ["Discovered virtual machine", 
                               "VMs migrated to cloud", 
+                              "VMs migrated from cloud", 
                               "ClonePrepInternalTemplateFolder", 
                               "ClonePrepReplicaVmFolder", 
                               "ClonePrepParentVmFolder", 
                               "ClonePrepResyncVmFolder", 
-                              "vm", 
                               "Management VMs", 
                               "Workloads", "Templates"]
 
